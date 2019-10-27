@@ -1,4 +1,4 @@
-#!/bin/bash -eux
+#!/bin/bash -eu
 rm -rf ./tmp || true
 mkdir tmp
 
