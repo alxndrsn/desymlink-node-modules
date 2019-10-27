@@ -1,11 +1,29 @@
-#!/bin/bash -eu
+#!/bin/bash -eux
 rm -rf ./tmp || true
 mkdir tmp
 
-tar -hcf - node_modules | tar -xf - -C tmp
+desymlink_all() {
+	tar -hcf - node_modules | tar -xf - -C tmp
 
-rm -rf tmp/node_modules/.bin
-mv node_modules/.bin tmp/node_modules/
+	rm -rf tmp/node_modules/.bin
+	mv node_modules/.bin tmp/node_modules/
 
-rm -rf node_modules
-mv tmp/node_modules node_modules
+	rm -rf node_modules
+	mv tmp/node_modules node_modules
+}
+
+desymlink_specific() {
+	tar -hcf - node_modules/$@ | tar -xf - -C tmp
+
+	rm -rf node_modules/$@
+	mv tmp/node_modules/* node_modules/
+}
+
+if [[ "$#" = "0" ]]; then
+	desymlink_all
+elif [[ "$#" = "1" ]]; then
+	desymlink_specific "$@"
+else
+	echo "No support for multiple args yet :~("
+	exit 1
+fi
