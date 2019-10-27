@@ -13,17 +13,17 @@ desymlink_all() {
 }
 
 desymlink_specific() {
-	tar -hcf - node_modules/$@ | tar -xf - -C tmp
+	tar -hcf - node_modules/$1 | tar -xf - -C tmp
 
-	rm -rf node_modules/$@
+	rm -rf node_modules/$1
 	mv tmp/node_modules/* node_modules/
 }
 
 if [[ "$#" = "0" ]]; then
 	desymlink_all
 elif [[ "$#" = "1" ]]; then
-	desymlink_specific "$@"
+	desymlink_specific "$1"
 else
-	echo "No support for multiple args yet :~("
+	echo "No support for multiple args yet; try using globs"
 	exit 1
 fi
