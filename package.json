@@ -1,7 +1,7 @@
 {
   "name": "desymlink-node-modules",
-  "version": "0.1.0",
-  "scripts": {
+  "version": "0.1.1",
+  "bin": {
     "desymlink-node-modules": "desymlink-node-modules"
   },
   "repository": {
