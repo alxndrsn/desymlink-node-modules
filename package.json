@@ -2,6 +2,7 @@
   "name": "desymlink-node-modules",
   "version": "0.1.0",
   "scripts": {
+    "desymlink-node-modules": "desymlink-node-modules"
   },
   "repository": {
     "type": "git",
