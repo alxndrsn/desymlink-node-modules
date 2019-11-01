@@ -18,7 +18,9 @@ desymlink_specific() {
 		rm -rf node_modules/$1
 	fi
 
-	mv tmp/node_modules/* node_modules/
+	if [[ -d tmp/node_modules/* ]]; then
+		mv tmp/node_modules/* node_modules/
+	fi
 }
 
 if [[ "$#" = "0" ]]; then
