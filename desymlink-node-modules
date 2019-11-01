@@ -13,7 +13,7 @@ desymlink_all() {
 }
 
 desymlink_specific() {
-	if compgen -G "node_modules/$1" > /dev/null; then
+	if compgen -G "node_modules/$1" >/dev/null; then
 		echo "[desymlink-node-modules] desymlinking $1..."
 		tar -hcf - node_modules/$1 | tar -xf - -C tmp
 		rm -rf node_modules/$1
@@ -21,7 +21,7 @@ desymlink_specific() {
 		echo "[desymlink-node-modules] no module(s) found matching: $1"
 	fi
 
-	if [[ -d tmp/node_modules/* ]]; then
+	if compgen -G "tmp/node_modules/*" >/dev/null; then
 		mv tmp/node_modules/* node_modules/
 	fi
 }
