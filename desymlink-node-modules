@@ -13,9 +13,11 @@ desymlink_all() {
 }
 
 desymlink_specific() {
-	tar -hcf - node_modules/$1 | tar -xf - -C tmp
+	if [[ -d node_modules/paygo-rn-* ]]; then
+		tar -hcf - node_modules/$1 | tar -xf - -C tmp
+		rm -rf node_modules/$1
+	fi
 
-	rm -rf node_modules/$1
 	mv tmp/node_modules/* node_modules/
 }
 
